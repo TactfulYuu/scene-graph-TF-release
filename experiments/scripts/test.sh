@@ -34,7 +34,7 @@ esac
 
 export CUDA_VISIBLE_DEVICES=$GPU_ID
 
-time ./tools/test_net.py --gpu 0 \
+time bash /home/lijiahao1/code/scene-graph-TF-release/tools/test_net.py --gpu 0 \
   --weights ${WEIGHT_FN} \
   --imdb ${IMDB}.h5 \
   --roidb ${ROIDB} \
