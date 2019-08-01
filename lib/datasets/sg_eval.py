@@ -145,7 +145,9 @@ def _relation_recall(gt_triplets, pred_triplets,
                               np.where(obj_iou >= iou_thresh)[0])
         if inds.size > 0:
             num_correct_pred_gt += 1
-    return float(num_correct_pred_gt) / float(num_gt)
+    # 计算方法似乎有些问题？，是否要除float(num_gt)？
+    print("num_gt:",num_gt)
+    return float(num_correct_pred_gt) / float(num_gt) 
 
 
 def iou(gt_box, pred_boxes):

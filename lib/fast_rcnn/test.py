@@ -110,6 +110,7 @@ def _get_blobs(im, rois):
 def im_detect(sess, net, inputs, im, boxes, bbox_reg, multi_iter):
     blobs, im_scales = _get_blobs(im, boxes)
 
+    # 两两配对，n^2组pairs
     relations = []
     for i in range(boxes.shape[0]):
         for j in range(boxes.shape[0]):
@@ -274,7 +275,7 @@ def test_net(net_name, weight_name, imdb, mode, max_per_image=100):
               .format(im_i + 1, num_images, _t['im_detect'].average_time,
                       _t['evaluate'].average_time)
 
-    # print out evaluation results
+    # print out evaluation results 打印结果
     for mode in eval_modes:
         for iter_n in multi_iter:
             evaluators[mode][iter_n].print_stats()
