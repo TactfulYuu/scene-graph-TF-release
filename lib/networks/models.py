@@ -239,7 +239,7 @@ class dual_graph_vrd(basenet):
 
         return vert_ctx
 
-    # 更改激活函数
+    # Change activation function:
     def _compute_edge_context_soft(self, vert_factor, edge_factor, reuse=False):
         """
         attention-based edge message pooling
