@@ -239,6 +239,7 @@ class dual_graph_vrd(basenet):
 
         return vert_ctx
 
+    # 更改激活函数
     def _compute_edge_context_soft(self, vert_factor, edge_factor, reuse=False):
         """
         attention-based edge message pooling
@@ -252,10 +253,10 @@ class dual_graph_vrd(basenet):
         # compute compatibility scores
         (self.feed(sub_vert_w_input)
              .fc(1, relu=False, reuse=reuse, name='sub_vert_w_fc')
-             .sigmoid(name='sub_vert_score'))
+             .relu(name='sub_vert_score'))
         (self.feed(obj_vert_w_input)
              .fc(1, relu=False, reuse=reuse, name='obj_vert_w_fc')
-             .sigmoid(name='obj_vert_score'))
+             .relu(name='obj_vert_score'))
 
         sub_vert_w = self.get_output('sub_vert_score')
         obj_vert_w = self.get_output('obj_vert_score')
@@ -281,10 +282,10 @@ class dual_graph_vrd(basenet):
         # compute compatibility scores
         (self.feed(out_edge_w_input)
              .fc(1, relu=False, reuse=reuse, name='out_edge_w_fc')
-             .sigmoid(name='out_edge_score'))
+             .relu(name='out_edge_score'))
         (self.feed(in_edge_w_input)
              .fc(1, relu=False, reuse=reuse, name='in_edge_w_fc')
-             .sigmoid(name='in_edge_score'))
+             .relu(name='in_edge_score'))
 
         out_edge_w = self.get_output('out_edge_score')
         in_edge_w = self.get_output('in_edge_score')
